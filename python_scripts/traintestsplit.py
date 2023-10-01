@@ -28,7 +28,8 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
         "High Skill",
         "Very High Skill",
     ]
-    df["SKILL_CAT"] = pd.cut(df["SKILL_"], bins=bins, labels=labels)
+    df = df.copy()
+    df["SKILL_CAT"] = pd.cut(df["SKILL_"], bins=bins, labels=labels).astype(str)
 
     # Shuffle the dataframe
     df = df.sample(frac=1, random_state=RANDOM_STATE)
@@ -40,7 +41,7 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
     X = df
 
     # Split the data into testing and non-testing
-    X_train_valid, y_train_valid, X_test, y_test = train_test_split(
+    X_train_valid, X_test, y_train_valid, y_test = train_test_split(
         X,
         y,
         train_size=(1 - valid_size_ - test_size_),
@@ -49,11 +50,11 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
     )
 
     # Split the non-testing data into training and validation
-    X_train, y_train, X_valid, y_valid = train_test_split(
+    X_train, X_valid, y_train, y_valid = train_test_split(
         X_train_valid,
         y_train_valid,
-        train_size=(1 - valid_size_),
-        stratify=X["SKILL_CAT"],
+        train_size=valid_size_ / (1 - valid_size_),
+        stratify=X_train_valid["SKILL_CAT"],
         random_state=RANDOM_STATE,
     )
 
