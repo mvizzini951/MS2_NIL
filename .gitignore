@@ -1,2 +1,4 @@
 .DS_Store
 csv_files/.DS_Store
+
+.vscode/*
