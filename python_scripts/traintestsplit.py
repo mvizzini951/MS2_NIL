@@ -29,7 +29,7 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
         "Very High Skill",
     ]
     df = df.copy()
-    df["SKILL_CAT"] = pd.cut(df["SKILL_"], bins=bins, labels=labels).astype(str)
+    df["SKILL_CAT"] = pd.cut(df["SKILL"], bins=bins, labels=labels).astype(str)
 
     # Shuffle the dataframe
     df = df.sample(frac=1, random_state=RANDOM_STATE)
