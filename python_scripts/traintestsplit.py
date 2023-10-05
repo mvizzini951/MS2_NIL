@@ -19,17 +19,22 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
     :: Function Description ::
         'custom_train_test_split' looks to take a cleaned dataframe and split it into the various training, validating, and testing datasets.
     """
-    # Transform the continuous "SKILL_" column into a categorical such that it could be binned
-    bins = [0, 80, 85, 90, 95, 100]
-    labels = [
-        "Very Low Skill",
-        "Low Skill",
-        "Medium Skill",
-        "High Skill",
-        "Very High Skill",
-    ]
+    # Transform the continuous "SKILL" column into a categorical such that it could be binned
+    # bins = [0, 80, 85, 90, 95, 100]
+    # labels = [
+    #     "Very Low Skill",
+    #     "Low Skill",
+    #     "Medium Skill",
+    #     "High Skill",
+    #     "Very High Skill",
+    # ]
     df = df.copy()
-    df["SKILL_CAT"] = pd.cut(df["SKILL"], bins=bins, labels=labels).astype(str)
+    
+    bins =  4
+    df['SKILL_CAT'] = pd.cut(df['SKILL'],bins=bins,labels=False)
+    #df["SKILL_CAT"] = pd.cut(df["SKILL"], bins=bins, labels=labels).astype(str)
+
+
 
     # Shuffle the dataframe
     df = df.sample(frac=1, random_state=RANDOM_STATE)
