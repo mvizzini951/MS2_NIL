@@ -58,7 +58,7 @@ def custom_train_test_split(df, valid_size_=0.15, test_size_=0.15, RANDOM_STATE=
     X_train, X_valid, y_train, y_valid = train_test_split(
         X_train_valid,
         y_train_valid,
-        train_size=valid_size_ / (1 - valid_size_),
+        test_size=valid_size_,
         stratify=X_train_valid["SKILL_CAT"],
         random_state=RANDOM_STATE,
     )
