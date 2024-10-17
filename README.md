@@ -16,5 +16,5 @@ All models were built using Jupyter notebooks
 # Data
 Our data was built from the following publicly available sources:
 
-[Equity in Athletic, US Department of Education](https://ope.ed.gov/athletics/#/datafile/list)<br>
+[Equity in Athletics, US Department of Education](https://ope.ed.gov/athletics/#/datafile/list)<br>
 [On3 NIL Evaluation, via custom webscraping script](https://www.on3.com/)
